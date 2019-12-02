@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.androidavanzado.capitalsocial.R;
 import com.androidavanzado.capitalsocial.common.Functions;
+import com.androidavanzado.capitalsocial.common.SpacesItemDecoration;
 import com.androidavanzado.capitalsocial.model.Promotion;
 
 import java.util.ArrayList;
@@ -65,6 +66,8 @@ public class PromotionsActivity extends AppCompatActivity {
         //layoutManager = new LinearLayoutManager(this);
         layoutManager = new GridLayoutManager(this, 2);
 
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
+        recyclerPromotions.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         recyclerPromotions.setHasFixedSize(true);
         recyclerPromotions.setItemAnimator(new DefaultItemAnimator());
         recyclerPromotions.setAdapter(adapter);

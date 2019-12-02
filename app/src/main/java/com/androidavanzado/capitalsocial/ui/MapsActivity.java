@@ -1,5 +1,7 @@
 package com.androidavanzado.capitalsocial.ui;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -8,8 +10,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.androidavanzado.capitalsocial.R;
+import com.androidavanzado.capitalsocial.common.Functions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,18 +26,25 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient client;
     private String TAG = "Maps";
     private Double latitude;
     private Double longitude;
+    private Functions functions = new Functions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        //Add back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        functions.centerTitle(this);
 
         client = LocationServices.getFusedLocationProviderClient(this);
         requestPermission();
@@ -75,5 +86,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         configLocation();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            //return the activity
+            this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

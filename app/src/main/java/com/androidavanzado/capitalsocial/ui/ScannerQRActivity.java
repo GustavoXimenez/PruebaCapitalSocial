@@ -1,8 +1,8 @@
 package com.androidavanzado.capitalsocial.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,12 +12,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.webkit.URLUtil;
-import android.widget.Toast;
 
 import com.androidavanzado.capitalsocial.R;
+import com.androidavanzado.capitalsocial.common.Functions;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -34,11 +35,16 @@ public class ScannerQRActivity extends AppCompatActivity {
     private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     private String token = "";
     private String tokenanterior = "";
+    private Functions functions = new Functions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner_qr);
+        functions.centerTitle(this);
+        //Add back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         cameraView = (SurfaceView) findViewById(R.id.camera_view);
         initQR();
@@ -126,11 +132,16 @@ public class ScannerQRActivity extends AppCompatActivity {
                             startActivity(browserIntent);
                         } else {
                             // comparte en otras apps
-                            Intent shareIntent = new Intent();
+                            /*Intent shareIntent = new Intent();
                             shareIntent.setAction(Intent.ACTION_SEND);
                             shareIntent.putExtra(Intent.EXTRA_TEXT, token);
                             shareIntent.setType("text/plain");
-                            startActivity(shareIntent);
+                            startActivity(shareIntent); */
+
+                            Intent data = new Intent();
+                            data.setData(Uri.parse(token));
+                            setResult(RESULT_OK, data);
+                            finish();
                         }
 
                         new Thread(new Runnable() {
@@ -154,5 +165,18 @@ public class ScannerQRActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            //return the activity
+            this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

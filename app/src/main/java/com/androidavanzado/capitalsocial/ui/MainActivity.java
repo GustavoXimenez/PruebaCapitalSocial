@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     // var Scanner
     private ZXingScannerView scannerView;
+    int request_code = 1;
 
     //Views
     private EditText edtUser;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
             scannerView.startCamera(); */
 
             Intent intent = new Intent(MainActivity.this, ScannerQRActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, request_code);
         }
     }
 
@@ -155,5 +156,13 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        if ((requestCode == request_code) && (resultCode == RESULT_OK)){
+            edtPassword.setText(data.getDataString());
+        }
     }
 }
