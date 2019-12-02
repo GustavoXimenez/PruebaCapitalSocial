@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Capital Social</string>
+
+    <string name="login_scanner_qr">Escanea código QR</string>
+    <string name="login_option">O ingresa tu correo y contraseña</string>
+    <string name="login_user">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_login">Ingresar</string>
+    <string name="login_register">Registrate</string>
+    <string name="login_forget_password">¿Has olvidado tu contraseña?</string>
+    <string name="login_email_incorrect">Email incorrecto</string>
+    <string name="login_password_incorrect">Debe ingresar contraseña</string>
+    <string name="title_activity_promotions">PromotionsActivity</string>
+
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</string>
+    <string name="promotion_map">Mapa</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="strTxt_PermissionLocation">Capital Social usará tu ubicación para mostrarte tu ubicación.</string>
+</resources>

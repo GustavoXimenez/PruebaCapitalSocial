@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- adding items for menu -->
+    <item
+        android:title="@string/promotion_map"
+        android:id="@+id/map"
+        app:showAsAction="always" />
+
+</menu>
